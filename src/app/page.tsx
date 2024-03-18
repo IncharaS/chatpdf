@@ -42,7 +42,7 @@ export default async function Home() {
             </div>
           </div>
           <p className="max-w-xl mt-3 text-lg text-slate-700">
-            Unlock a whole new way to interact with your PDFs – AI-powered chat that enables you to ask questions, get real-time insights, and dive deeper into your documents with ease.
+            Unlock a whole new way to interact with your PDFs. ThisAI-powered chat that enables you to ask questions, get real-time insights, and dive deeper into your documents with ease.
           </p>
 
           <div className="w-full mt-6">

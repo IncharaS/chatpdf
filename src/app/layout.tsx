@@ -34,9 +34,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${playfair.variable} antialiased`}
       >
             {children}
-            <Toaster/>
+            <Toaster />
+            <div className="fixed bottom-2 right-4 text-xs text-gray-400 z-50">
+              INCHARA SRINIVASA
+            </div>
           </body>
-          
         </html>
         </Providers>
       </ClerkProvider>

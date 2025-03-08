@@ -6,6 +6,7 @@ import {useDropzone} from 'react-dropzone'
 
 
 const FileUpload = () => {
+    
     const { getRootProps, getInputProps } = useDropzone({
         accept: { "application/pdf": [".pdf"] },
         maxFiles: 1,

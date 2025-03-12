@@ -14,6 +14,8 @@ export const chats = pgTable('chats', {
 
 })
 
+export type DrizzleChat = typeof chats.$inferSelect;
+
 export const userSystemEnum = pgEnum('user_system_enum', ['system', 'user'])
 
 export const messages = pgTable("messages", {

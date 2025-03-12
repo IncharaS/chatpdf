@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { uploadToS3 } from '@/lib/s3';
 import { useMutation } from '@tanstack/react-query';
 import { Inbox, Loader2 } from 'lucide-react';
@@ -6,8 +6,10 @@ import React, { useState } from 'react'
 import {useDropzone} from 'react-dropzone'
 import axios from "axios"
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const FileUpload = () => {
+    const router = useRouter()
     const [uploading, setUploading] = useState(false);
     const { mutate, isPending } = useMutation({
         mutationFn: async ({
@@ -44,13 +46,14 @@ const FileUpload = () => {
                     console.log("somethings wrong, No file_key and file_name in uploadToS3 return obejct");
                 }
                 mutate(data, {
-                    onSuccess: (data) => {
-                        // console.log(data);
-                        toast.success(data.message);
-                        // i have defined data in nexrresponse in route.tsx
+                    onSuccess: ({chat_id}) => {
+                        console.log(data);
+                        toast.success("Chat created");
+                        // after the chat is created redirect to the chat page
+                        router.push(`/chat/${chat_id}`)
                     },
                     onError: (err) => {
-                        console.log(err);
+                        console.error(err);
                         toast.error("Error creating chat");
                     }
                 })

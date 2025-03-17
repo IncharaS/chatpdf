@@ -10,12 +10,10 @@ import PDFViewer from '@/components/PDFViewer';
 import ChatComponent from '@/components/ChatComponent';
 import { checkSubscription } from '@/lib/subscription';
 
-interface PageProps {
-    params: { chatId: string };
-}
 
-const ChatPage = async ({ params }: PageProps) => {
-    const { chatId } = params;
+export default async function ChatPage(props: { params: { chatId: string } }) {
+    const params = await props.params; // Awaiting params before accessing properties
+    const chatId = params.chatId; // Accessing chatId after awaiting params
     const { userId } = await auth();
     if (!userId) {
         return redirect('/sign-in');
@@ -53,5 +51,5 @@ const ChatPage = async ({ params }: PageProps) => {
     );
 };
 
-export default ChatPage;
+// export default ChatPage;
 

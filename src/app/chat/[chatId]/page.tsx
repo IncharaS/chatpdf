@@ -7,6 +7,7 @@ import React from 'react'
 import ChatSideBar from '@/components/ChatSideBar';
 import PDFViewer from '@/components/PDFViewer';
 import ChatComponent from '@/components/ChatComponent';
+import { checkSubscription } from '@/lib/subscription';
 type Props = {
     params: {
         chatId: string;
@@ -30,13 +31,14 @@ const ChatPage = async ({ params }: Props) => {
     }
 
     const currentChat = _chats.find(chat => chat.id === parseInt(chatId))
+    const isPro = await checkSubscription()
     return (
         <div className='flex max-h-screen overflow-scroll'>
             <div className='flex w-full max-h-screen overflow-scroll'>
                 {/* 3 divs inside */}
                 {/* 1. Sidebar for chats, 2. PDF Viewer, 3. Chat Component  */}
                 <div className='flex-[1] max-w-xs'>
-                    <ChatSideBar chats={_chats} chatId={parseInt(chatId)} />
+                    <ChatSideBar chats={_chats} chatId={parseInt(chatId)} isPro={isPro} />
                 </div>
 
                 <div className='flex-[5] max-h-screen p-4 overflow-scroll'>

@@ -88,6 +88,7 @@ export const truncateStringBytes = (str: string, bytes: number) => {
 
 async function prepareDocument(page: PDFPage) {
     //takes in single pdf page
+    // eslint-disable-next-line prefer-const
     let { pageContent, metadata } = page;
     pageContent = pageContent.replace(/\n/g, ' ')
     // replce new line characters with an empty string

@@ -7,7 +7,7 @@ import { chats } from "@/lib/db/schema";
 
 // /api/create-chat
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
     const { userId } = await auth()
     if (!userId) {
         return NextResponse.json({error: "unauthorized"}, {status: 401})

@@ -1,4 +1,4 @@
-import { Configuration, OpenAIApi } from "openai-edge";
+
 // import { Message, streamText } from "ai"
 // import { openai } from "@ai-sdk/openai"
 // import { getContext } from "@/lib/context"
@@ -88,10 +88,7 @@ import {openai} from '@ai-sdk/openai'
 //   apiKey: process.env.OPENAI_API_KEY, // API key from environment variable
 // });
 
-const config = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai1 = new OpenAIApi(config);
+
 
 export async function POST(req: Request) {
   try {

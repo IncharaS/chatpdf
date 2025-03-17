@@ -9,10 +9,13 @@ import ChatSideBar from '@/components/ChatSideBar';
 import PDFViewer from '@/components/PDFViewer';
 import ChatComponent from '@/components/ChatComponent';
 import { checkSubscription } from '@/lib/subscription';
+type Params = Promise<{ chatId: string }>
 
 
-export default async function ChatPage(props: { params: { chatId: string } }) {
-    const { chatId } = props.params;
+
+export default async function ChatPage(props: { params: Params }) {
+    const params = await props.params;
+    const chatId = params.chatId;
     const { userId } = await auth();
     if (!userId) {
         return redirect('/sign-in');

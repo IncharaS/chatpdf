@@ -6,13 +6,29 @@ import Link from "next/link";
 import React from 'react'
 import { Button } from './ui/button'
 import {cn} from '@/lib/utils'
+import axios from 'axios';
 
 type Props = {
     chats: DrizzleChat[],
     chatId: number,
 }
 
-const ChatSideBar = ({chats, chatId}: Props) => {
+const ChatSideBar = ({ chats, chatId }: Props) => {
+    const [loading, setLoading] = React.useState(false)
+    const handleSubscription = async () => {
+        try {
+            setLoading(true)
+            const response = await axios.get('/api/stripe')
+            window.location.href = response.data.url
+            // in both cases (subscripbed or not, stripe/route.ts responds with url)
+        }
+        catch(error) {
+            console.log(error)
+        }
+        finally {
+            setLoading(false)
+        }
+    }
   return (
       <div className='w-full h-screen p-4 text-gray-200 bg-gray-900'>
           <Link href='/'>
@@ -46,6 +62,9 @@ const ChatSideBar = ({chats, chatId}: Props) => {
                   <Link href='/'>Source</Link>
                   {/* stripe button  */}
               </div>
+              <Button className='mt-2 text-white bg-slate-700' disabled={loading} onClick={handleSubscription}>
+                  Upgrade to Pro
+              </Button>
           </div>
         </div>
   )

@@ -12,8 +12,7 @@ import { checkSubscription } from '@/lib/subscription';
 
 
 export default async function ChatPage(props: { params: { chatId: string } }) {
-    const params = props.params; // Awaiting params before accessing properties
-    const chatId = params.chatId; // Accessing chatId after awaiting params
+    const { chatId } = props.params;
     const { userId } = await auth();
     if (!userId) {
         return redirect('/sign-in');

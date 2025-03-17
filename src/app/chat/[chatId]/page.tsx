@@ -10,13 +10,11 @@ import PDFViewer from '@/components/PDFViewer';
 import ChatComponent from '@/components/ChatComponent';
 import { checkSubscription } from '@/lib/subscription';
 
-type Props = {
-    params: {
-        chatId: string;
-    };
-};
+interface PageProps {
+    params: { chatId: string };
+}
 
-const ChatPage = async ({ params }: Props) => {
+const ChatPage = async ({ params }: PageProps) => {
     const { chatId } = params;
     const { userId } = await auth();
     if (!userId) {
